@@ -13,3 +13,4 @@ password=123456
 It's for testing purposes don't misuse it
 
 A principal can register new student and teacher
+# The_school_client_site
