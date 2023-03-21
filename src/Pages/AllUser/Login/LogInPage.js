@@ -16,13 +16,14 @@ const LogInPage = () => {
 
     const newdata = { ...logindata };
     newdata[fieldname] = fieldvalue;
-    setLogindata(newdata)
+    setLogindata(newdata);
   };
 
   const onSubmitHandler = (e) => {
     setLoader(true);
     fetch(
-      `https://blooming-citadel-14218.herokuapp.com/checkUser?email=${logindata.email}`)
+      `https://the-school-network-server.vercel.app/checkUser?email=${logindata.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.userrole === "Principal" && role === "Principal") {
@@ -54,7 +55,8 @@ const LogInPage = () => {
               console.log("from login user", error.message);
               Swal.fire("Error!", "User Password/Email is Wrong", "error");
               setLoader(false);
-            }).finally(() => setIsloading(false));
+            })
+            .finally(() => setIsloading(false));
         } else if (data.userrole === "Student" && role === "Student") {
           LoginUser(logindata.email, logindata.password)
             .then((userCredential) => {
@@ -69,9 +71,9 @@ const LogInPage = () => {
               console.log("from login user", error.message);
               Swal.fire("Error!", "User Password/Email is Wrong", "error");
               setLoader(false);
-            }).finally(() => setIsloading(false));
-        }
-        else if (data.userrole === "Librarian" && role === "Librarian") {
+            })
+            .finally(() => setIsloading(false));
+        } else if (data.userrole === "Librarian" && role === "Librarian") {
           LoginUser(logindata.email, logindata.password)
             .then((userCredential) => {
               // Signed in
@@ -85,9 +87,9 @@ const LogInPage = () => {
               console.log("from login user", error.message);
               Swal.fire("Error!", "User Password/Email is Wrong", "error");
               setLoader(false);
-            }).finally(() => setIsloading(false));
-        }
-         else {
+            })
+            .finally(() => setIsloading(false));
+        } else {
           Swal.fire("Error!", "UnAuthorised User", "error");
           setLoader(false);
         }

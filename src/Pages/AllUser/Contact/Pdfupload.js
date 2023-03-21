@@ -24,7 +24,7 @@ function Pdfupload() {
     fd.append("StudentEmail", userdetails.StudentEmail);
     fd.append("StudentId", userdetails.StudentId);
 
-    fetch("https://blooming-citadel-14218.herokuapp.com/pdfupload", {
+    fetch("https://the-school-network-server.vercel.app/pdfupload", {
       method: "POST",
       // headers: { "Content-Type": "application/json" },
       body: fd,

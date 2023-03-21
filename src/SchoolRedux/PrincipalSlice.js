@@ -5,64 +5,67 @@ import Swal from "sweetalert2";
 export const PrincipalNoticePublish = createAsyncThunk(
   "Principal/PublishNotice",
   async (data) => {
-
-    const response = await fetch('https://blooming-citadel-14218.herokuapp.com/publisNotice',{
-      method: 'POST',
-      headers:{
-        'content-type':'application/json',
-        
-      },
-      body: JSON.stringify(data)
-    }).then(res=> res.json()).catch(error => {
-      Swal.fire(
-          '!',
-          'Error!',
-          'error'
-        )
-  });
-    return response
+    const response = await fetch(
+      "https://the-school-network-server.vercel.app/publisNotice",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((res) => res.json())
+      .catch((error) => {
+        Swal.fire("!", "Error!", "error");
+      });
+    return response;
   }
 );
 //Principal Publisshing image notice
 export const PublishImageNotice = createAsyncThunk(
   "Principal/PublishImageNotice",
   async (fd) => {
-    const response = await fetch('https://blooming-citadel-14218.herokuapp.com/PublishImageNotice',{
-      method: 'POST',
-      
-      body: fd
-    }).then(res=> res.json()).catch(error => {
-      Swal.fire(
-          '!',
-          'Error!',
-          'error'
-        )
-  });
-    return response
+    const response = await fetch(
+      "https://the-school-network-server.vercel.app/PublishImageNotice",
+      {
+        method: "POST",
+
+        body: fd,
+      }
+    )
+      .then((res) => res.json())
+      .catch((error) => {
+        Swal.fire("!", "Error!", "error");
+      });
+    return response;
   }
 );
 //principal geting all previous notices
 export const GetingPreviousNotice = createAsyncThunk(
   "Principal/getPreviousNotice",
   async () => {
-    const response = await fetch('https://blooming-citadel-14218.herokuapp.com/PreviousNotice',).then(res=> res.json())
-    return  response;
-   
+    const response = await fetch(
+      "https://the-school-network-server.vercel.app/PreviousNotice"
+    ).then((res) => res.json());
+    return response;
   }
 );
 //Principal Deleting  Notice
 export const DeleteNotice = createAsyncThunk(
   "Principal/DeleteNotice",
   async (id) => {
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/DeleteNotice/${id}`,{
-      method: 'DELETE' ,}).then(res=> res.json()).catch(error => {
-      Swal.fire(
-          '!',
-          'Error!',
-          'error'
-        )
-  });
-    return response
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/DeleteNotice/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((res) => res.json())
+      .catch((error) => {
+        Swal.fire("!", "Error!", "error");
+      });
+    return response;
   }
 );
 
@@ -70,187 +73,204 @@ export const DeleteNotice = createAsyncThunk(
 export const PutEditNotice = createAsyncThunk(
   "Principal/PutEditNotice",
   async (data) => {
-    console.log('hitted slice', data)
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/PutEditNotice/${data._id}`,{
-    method: 'PUT',
-    headers:{
-      'content-type':'application/json',
-      
-    },
-    body: JSON.stringify(data)
-    }).then(res=> res.json()).catch(error => {
-      console.log(error)
-  });
-    return response
+    console.log("hitted slice", data);
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/PutEditNotice/${data._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((res) => res.json())
+      .catch((error) => {
+        console.log(error);
+      });
+    return response;
   }
 );
 //Principal Publisshing Text Announcement
 export const PrincipalAnnouncementPublish = createAsyncThunk(
   "Principal/PublishAnnouncement",
   async (data) => {
-    console.log('hitted slice', data)
-    const response = await fetch('https://blooming-citadel-14218.herokuapp.com/publisAnnouncement',{
-      method: 'POST',
-      headers:{
-        'content-type':'application/json',
-        
-      },
-      body: JSON.stringify(data)
-    }).then(res=> res.json()).catch(error => {
-      Swal.fire(
-          '!',
-          'Error!',
-          'error'
-        )
-  });
-    return response
+    console.log("hitted slice", data);
+    const response = await fetch(
+      "https://the-school-network-server.vercel.app/publisAnnouncement",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((res) => res.json())
+      .catch((error) => {
+        Swal.fire("!", "Error!", "error");
+      });
+    return response;
   }
 );
 //Principal Publisshing image Announcement
 export const PublishImageAnnouncement = createAsyncThunk(
   "Principal/PublishImageAnnouncement",
   async (fd) => {
-    console.log('hitted img')
-    const response = await fetch('https://blooming-citadel-14218.herokuapp.com/PublishImageAnnouncement',{
-      method: 'POST',
-      body: fd
-    }).then(res=> res.json()).catch(error => {
-      Swal.fire(
-          '!',
-          'Error!',
-          'error'
-        )
-  });
-    return response
+    console.log("hitted img");
+    const response = await fetch(
+      "https://the-school-network-server.vercel.app/PublishImageAnnouncement",
+      {
+        method: "POST",
+        body: fd,
+      }
+    )
+      .then((res) => res.json())
+      .catch((error) => {
+        Swal.fire("!", "Error!", "error");
+      });
+    return response;
   }
 );
 //principal geting all previous Announcement
 export const GetingPreviousAnnouncement = createAsyncThunk(
   "Principal/getPreviousAnnouncement",
   async () => {
-    const response = await fetch('https://blooming-citadel-14218.herokuapp.com/PreviousAnnouncement').then(res=> res.json())
-    return  response;
-   
+    const response = await fetch(
+      "https://the-school-network-server.vercel.app/PreviousAnnouncement"
+    ).then((res) => res.json());
+    return response;
   }
 );
 //Principal Deleting  Announcement
 export const DeleteAnnouncement = createAsyncThunk(
   "Principal/DeleteAnnouncement",
   async (id) => {
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/DeleteAnnouncement/${id}`,{
-      method: 'DELETE'}).then(res=> res.json()).catch(error => {
-      Swal.fire(
-          '!',
-          'Error!',
-          'error'
-        )
-  });
-    return response
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/DeleteAnnouncement/${id}`,
+      {
+        method: "DELETE",
+      }
+    )
+      .then((res) => res.json())
+      .catch((error) => {
+        Swal.fire("!", "Error!", "error");
+      });
+    return response;
   }
 );
 //Principal put edit  Announcement
 export const PutEditAnnouncement = createAsyncThunk(
   "Principal/PutEditAnnouncement",
   async (data) => {
-    console.log('hitted slice', data)
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/PutEditAnnouncement/${data._id}`,{
-    method: 'PUT',
-    headers:{
-      'content-type':'application/json',
-      
-    },
-    body: JSON.stringify(data)
-    }).then(res=> res.json()).catch(error => {
-      console.log(error)
-  });
-    return response
+    console.log("hitted slice", data);
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/PutEditAnnouncement/${data._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((res) => res.json())
+      .catch((error) => {
+        console.log(error);
+      });
+    return response;
   }
 );
 //principal geting all previous Announcement
 export const GetAllStudents = createAsyncThunk(
   "Principal/GetAllStudents",
   async (stduentclass) => {
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/GetAllStudents?studentclass=${stduentclass}`).then(res=> res.json())
-    return  response;
-   
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/GetAllStudents?studentclass=${stduentclass}`
+    ).then((res) => res.json());
+    return response;
   }
 );
 //principal and teacher geting individual performance of student
 export const IndividualPerformance = createAsyncThunk(
   "Principal/IndividualPerformance",
   async (id) => {
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/IndividualPerformance/${id}`).then(res=> res.json())
-    return  response;
-   
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/IndividualPerformance/${id}`
+    ).then((res) => res.json());
+    return response;
   }
 );
 //principal submitting payment
 export const UploadMonthlyPayment = createAsyncThunk(
   "Principal/UploadMonthlyPayment",
   async (data) => {
-   
-    const response = await fetch('https://blooming-citadel-14218.herokuapp.com/UploadMonthlyPayment',{
-      method: 'POST',
-      headers:{
-        'content-type':'application/json',
-        
-      },
-      body: JSON.stringify(data)
-    }).then(res=> res.json())
-    return  response;
-   
+    const response = await fetch(
+      "https://the-school-network-server.vercel.app/UploadMonthlyPayment",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    ).then((res) => res.json());
+    return response;
   }
 );
 //principal Geting all teachers list
 export const GetAllTeachers = createAsyncThunk(
   "Principal/GetAllTeachers",
   async (data) => {
-    const response = await fetch('https://blooming-citadel-14218.herokuapp.com/GetAllTeachers',).then(res=> res.json())
-    return  response;
-   
+    const response = await fetch(
+      "https://the-school-network-server.vercel.app/GetAllTeachers"
+    ).then((res) => res.json());
+    return response;
   }
 );
 //principal submitting payment
 export const PostAdmissionData = createAsyncThunk(
   "Principal/PostAdmissionData",
   async (data) => {
-   
-    const response = await fetch('https://blooming-citadel-14218.herokuapp.com/addmissionpayment',{
-      method: 'POST',
-      
-      body: data
-    }).then(res=> res.json())
-    return  response;
-   
+    const response = await fetch(
+      "https://the-school-network-server.vercel.app/addmissionpayment",
+      {
+        method: "POST",
+
+        body: data,
+      }
+    ).then((res) => res.json());
+    return response;
   }
 );
 //principal getting individual  payment details
 export const GetlPaymentDetails = createAsyncThunk(
   "Principal/GetlPaymentDetails",
   async (email) => {
-    
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/GetlPaymentDetails?email=${email}`).then(res=> res.json())
-    return  response;
-   
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/GetlPaymentDetails?email=${email}`
+    ).then((res) => res.json());
+    return response;
   }
 );
 //principal getting individual  payment details
 export const GetAdmissionForms = createAsyncThunk(
   "Principal/GetAdmissionForms",
   async () => {
-    const response = await fetch('https://blooming-citadel-14218.herokuapp.com/GetAdmissionForms').then(res=> res.json())
-    return  response;
-   
+    const response = await fetch(
+      "https://the-school-network-server.vercel.app/GetAdmissionForms"
+    ).then((res) => res.json());
+    return response;
   }
 );
 //principal getting individual  payment details
 export const IndividualAdmissionForm = createAsyncThunk(
   "Principal/IndividualAdmissionForm",
   async (id) => {
-
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/IndividualAdmissionForm/${id}`).then(res=> res.json())
-    return  response;
-   
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/IndividualAdmissionForm/${id}`
+    ).then((res) => res.json());
+    return response;
   }
 );
 
@@ -258,19 +278,22 @@ export const IndividualAdmissionForm = createAsyncThunk(
 export const RemoveTeacher = createAsyncThunk(
   "Principal/RemoveTeacher",
   async (id) => {
-
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/RemoveTeacher/${id}`,{
-      method: 'DELETE'
-    }).then(res=> res.json())
-    return  response;
-   
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/RemoveTeacher/${id}`,
+      {
+        method: "DELETE",
+      }
+    ).then((res) => res.json());
+    return response;
   }
 );
 //Get Individual ConcessionForm data
 export const GetSingleData = createAsyncThunk(
   "Principal/GetSingleData",
   async (id) => {
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/GetSingleData/${id}`)
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/GetSingleData/${id}`
+    )
       .then((res) => res.json())
       .catch((error) => {
         Swal.fire("!", "Error!", "error");
@@ -284,7 +307,7 @@ export const ConcessionFormData = createAsyncThunk(
   "Principal/ConcessionFormData",
   async (data) => {
     const response = await fetch(
-      "https://blooming-citadel-14218.herokuapp.com/ConcessionFormData"
+      "https://the-school-network-server.vercel.app/ConcessionFormData"
     ).then((res) => res.json());
     return response;
   }

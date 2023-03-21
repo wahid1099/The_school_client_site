@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 export const GetResult = createAsyncThunk("Student/seeResult", async () => {
   console.log("Hitted Student Slice");
   const response = await fetch(
-    "https://blooming-citadel-14218.herokuapp.com/student/results"
+    "https://the-school-network-server.vercel.app/student/results"
   )
     .then((res) => res.json())
     .catch((err) => {
@@ -21,7 +21,7 @@ export const RequestExtraCare = createAsyncThunk(
   async (data) => {
     console.log("Hitted Extra Care");
     const response = await fetch(
-      "https://blooming-citadel-14218.herokuapp.com/student/requestCare",
+      "https://the-school-network-server.vercel.app/student/requestCare",
       {
         method: "POST",
         headers: {
@@ -44,7 +44,7 @@ export const GetStudent = createAsyncThunk(
   async (data) => {
     console.log("Hitted Get Student", data.email);
     const response = await fetch(
-      `https://blooming-citadel-14218.herokuapp.com/student/filteredStudent?email=${data.email}&&term=${data.term}`
+      `https://the-school-network-server.vercel.app/student/filteredStudent?email=${data.email}&&term=${data.term}`
     )
       .then((res) => res.json())
       .catch((err) => {
@@ -65,7 +65,7 @@ export const GetFilteredResult = createAsyncThunk(
   async (email) => {
     console.log("Hitted Get Filtered Student", email);
     const response = await fetch(
-      `https://blooming-citadel-14218.herokuapp.com/student/filteredResult?email=${email}`
+      `https://the-school-network-server.vercel.app/student/filteredResult?email=${email}`
     )
       .then((res) => res.json())
       .catch((err) => {
@@ -81,7 +81,7 @@ export const getStudentInfo = createAsyncThunk(
   "Student/studentProfile",
   async (email) => {
     const response = await fetch(
-      `https://blooming-citadel-14218.herokuapp.com/student/studentProfile?email=${email}`
+      `https://the-school-network-server.vercel.app/student/studentProfile?email=${email}`
     ).then((res) => res.json());
     return response;
   }
@@ -92,7 +92,7 @@ export const updateStudentPP = createAsyncThunk(
   "Student/updateStudentPP",
   async (data) => {
     const response = await fetch(
-      `https://blooming-citadel-14218.herokuapp.com/student/updateStudentPP?email=${data.email}`,
+      `https://the-school-network-server.vercel.app/student/updateStudentPP?email=${data.email}`,
       {
         method: "PUT",
         body: data.fd,
@@ -108,7 +108,7 @@ export const GetStudentNotice = createAsyncThunk(
   "Student/GetStudentNotice",
   async (studentclass) => {
     const response = await fetch(
-      `https://blooming-citadel-14218.herokuapp.com/student/GetStudentNotice?studentclass=${studentclass}`
+      `https://the-school-network-server.vercel.app/student/GetStudentNotice?studentclass=${studentclass}`
     )
       .then((res) => res.json())
       .catch((err) => console.log(err));
@@ -120,7 +120,7 @@ export const getMontlyPayment = createAsyncThunk(
   "Student/getMontlyPayment",
   async (email) => {
     const response = await fetch(
-      `https://blooming-citadel-14218.herokuapp.com/student/getMontlyPayment?email=${email}`
+      `https://the-school-network-server.vercel.app/student/getMontlyPayment?email=${email}`
     )
       .then((res) => res.json())
       .catch((err) => console.log(err));
@@ -132,7 +132,7 @@ export const PayMonthlyPayment = createAsyncThunk(
   "Student/PayMonthlyPayment",
   async (data) => {
     const response = await fetch(
-      "https://blooming-citadel-14218.herokuapp.com/PayMonthlyPayment",
+      "https://the-school-network-server.vercel.app/PayMonthlyPayment",
       {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -148,42 +148,44 @@ export const PayMonthlyPayment = createAsyncThunk(
 export const StudnetAssignmentSubmit = createAsyncThunk(
   "Student/StudnetAssignmentSubmit",
   async (data) => {
-    
-      const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/pdfUpload?id=${data.id}`,
-          {
-              method: "POST",
-              // headers: { "content-type": "application/json" },
-              body: data.fd,
-          }
-      )
-          .then((res) => res.json())
-          .catch((err) => console.log(err));
-      return response;
-  }
-);
-
-// -------------libraray-------------
-//student submitting lented book form
-export const LentBook = createAsyncThunk(
-  "Student/LentBook",
-  async (data) => {
-    console.log('slice', data)
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/student/LentBook/${data.id}`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(data.FullBookData),
-    })
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/pdfUpload?id=${data.id}`,
+      {
+        method: "POST",
+        // headers: { "content-type": "application/json" },
+        body: data.fd,
+      }
+    )
       .then((res) => res.json())
       .catch((err) => console.log(err));
     return response;
   }
 );
 
+// -------------libraray-------------
+//student submitting lented book form
+export const LentBook = createAsyncThunk("Student/LentBook", async (data) => {
+  console.log("slice", data);
+  const response = await fetch(
+    `https://the-school-network-server.vercel.app/student/LentBook/${data.id}`,
+    {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data.FullBookData),
+    }
+  )
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
+  return response;
+});
+
 //student submitting lented book form
 export const YourLentBookList = createAsyncThunk(
   "Student/YourLentBookList",
   async (email) => {
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/student/YourLentBookList?email=${email}`)
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/student/YourLentBookList?email=${email}`
+    )
       .then((res) => res.json())
       .catch((err) => console.log(err));
     return response;
@@ -192,10 +194,13 @@ export const YourLentBookList = createAsyncThunk(
 //student submitting lented book form
 export const ReturnBook = createAsyncThunk(
   "Student/ReturnBook",
-  async (data) => {  
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/student/ReturnBook?bookId=${data.bookId}&&id=${data.id}`,{
-      method:'DELETE'
-    })
+  async (data) => {
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/student/ReturnBook?bookId=${data.bookId}&&id=${data.id}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((res) => res.json())
       .catch((err) => console.log(err));
     return response;
@@ -205,8 +210,10 @@ export const ReturnBook = createAsyncThunk(
 //student geting category book
 export const GetCategoryBook = createAsyncThunk(
   "Student/GetCategoryBook",
-  async (category) => {  
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/student/GetCategoryBook?category=${category}`)
+  async (category) => {
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/student/GetCategoryBook?category=${category}`
+    )
       .then((res) => res.json())
       .catch((err) => console.log(err));
     return response;
@@ -216,8 +223,10 @@ export const GetCategoryBook = createAsyncThunk(
 //student geting category book
 export const GetNotification = createAsyncThunk(
   "Student/GetNotification",
-  async (email) => {  
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/student/GetNotification?email=${email}`)
+  async (email) => {
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/student/GetNotification?email=${email}`
+    )
       .then((res) => res.json())
       .catch((err) => console.log(err));
     return response;
@@ -228,7 +237,7 @@ export const GetNotification = createAsyncThunk(
 export const GetVideos = createAsyncThunk("Student/GetVideos", async (data) => {
   console.log("Hitted GetVideos", data.class);
   const response = await fetch(
-    `https://blooming-citadel-14218.herokuapp.com/videos?class=${data.class}`
+    `https://the-school-network-server.vercel.app/videos?class=${data.class}`
   )
     .then((res) => res.json())
     .catch((err) => {
@@ -247,7 +256,9 @@ export const GetVideoById = createAsyncThunk(
   "Student/GetVideoById",
   async (data) => {
     console.log("Hitted GetVideoById", data.id);
-    const response = await fetch(`https://blooming-citadel-14218.herokuapp.com/video?id=${data.id}`)
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/video?id=${data.id}`
+    )
       .then((res) => res.json())
       .catch((err) => {
         console.log(err);
@@ -267,7 +278,7 @@ export const studentConcessionForm = createAsyncThunk(
   async (data) => {
     console.log("Hitted student Concession Form");
     const response = await fetch(
-      "https://blooming-citadel-14218.herokuapp.com/student/concessionForm",
+      "https://the-school-network-server.vercel.app/student/concessionForm",
       {
         method: "POST",
         headers: {
@@ -282,14 +293,14 @@ export const studentConcessionForm = createAsyncThunk(
       });
     return response;
   }
-); 
+);
 
 // get student Attendance Collections
 export const studentAttendanceCollections = createAsyncThunk(
   "Student/studentAttendanceCollections",
   async (email) => {
     const response = await fetch(
-      `https://blooming-citadel-14218.herokuapp.com/student/studentAttendanceCollections?email=${email}`
+      `https://the-school-network-server.vercel.app/student/studentAttendanceCollections?email=${email}`
     )
       .then((res) => res.json())
       .catch((err) => console.log(err));
@@ -300,11 +311,11 @@ export const studentAttendanceCollections = createAsyncThunk(
 export const GetAllAssignments = createAsyncThunk(
   "Student/GetAllAssignments",
   async (data) => {
-      console.log(data);
-      const response = await fetch(
-          `https://blooming-citadel-14218.herokuapp.com/student/GetAllAssignments?class=${data}`
-      ).then((res) => res.json());
-      return response;
+    console.log(data);
+    const response = await fetch(
+      `https://the-school-network-server.vercel.app/student/GetAllAssignments?class=${data}`
+    ).then((res) => res.json());
+    return response;
   }
 );
 
@@ -324,7 +335,7 @@ export const StudentReducer = createSlice({
     videos: [],
     video: {},
     attendance: [],
-    assignments: []
+    assignments: [],
   },
   reducers: {
     increment: (state) => {
@@ -379,18 +390,18 @@ export const StudentReducer = createSlice({
       Swal.fire("Success", "Book Lented Successfully", "success");
     });
     builder.addCase(YourLentBookList.fulfilled, (state, action) => {
-      state.LentBookList = action.payload
+      state.LentBookList = action.payload;
     });
     builder.addCase(ReturnBook.fulfilled, (state, action) => {
       Swal.fire("Success", "Book Returned Successfully", "success");
     });
     builder.addCase(GetCategoryBook.fulfilled, (state, action) => {
-      state.CategoryBook = action.payload
+      state.CategoryBook = action.payload;
     });
     builder.addCase(GetNotification.fulfilled, (state, action) => {
-      state.Notifications = action.payload
+      state.Notifications = action.payload;
     });
-        // set all the videos to the state
+    // set all the videos to the state
     builder.addCase(GetVideos.fulfilled, (state, action) => {
       state.videos = action.payload;
     });
@@ -402,7 +413,7 @@ export const StudentReducer = createSlice({
     builder.addCase(studentAttendanceCollections.fulfilled, (state, action) => {
       state.attendance = action.payload;
     });
-     builder.addCase(studentConcessionForm.fulfilled, (state, action) => {
+    builder.addCase(studentConcessionForm.fulfilled, (state, action) => {
       Swal.fire("Success", "Concession Form Submitted Successfully", "success");
     });
     builder.addCase(GetAllAssignments.fulfilled, (state, action) => {
